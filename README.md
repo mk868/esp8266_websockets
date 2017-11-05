@@ -11,4 +11,4 @@ The repository contains an example usage of client in the _user_main.c_ file.
 
 ### TODO:
 - merging multiple message fragments into one(useful in JSON data type)
-- wws
+- wss
