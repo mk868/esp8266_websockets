@@ -12,6 +12,9 @@
 
 #define WS_PATH "/"
 
+#define SET_DNS1(ipaddr) IP4_ADDR(ipaddr, 8, 8, 8, 8)
+#define SET_DNS2(ipaddr) IP4_ADDR(ipaddr, 8, 8, 4, 4)
+
 #endif
 
 
