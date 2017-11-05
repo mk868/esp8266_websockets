@@ -12,6 +12,7 @@
 #include <mem.h>
 
 #include "sha1.h"
+#include "Base64.h"
 
 
 #ifdef WS_DEBUG
