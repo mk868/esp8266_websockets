@@ -1,3 +1,9 @@
+/*
+	ESP8266 websocket client
+	version: 0.1
+	GIT: https://github.com/mkuch95/esp8266_websockets
+*/
+
 #ifndef __USER_CONFIG_H__
 #define __USER_CONFIG_H__
 
