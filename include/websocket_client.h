@@ -1,4 +1,9 @@
 #pragma once
+/*
+	ESP8266 websocket client
+	version: 0.1
+	GIT: https://github.com/mkuch95/esp8266_websockets
+*/
 
 #ifndef WEBSOCKET_CLIENT_H_
 #define WEBSOCKET_CLIENT_H_

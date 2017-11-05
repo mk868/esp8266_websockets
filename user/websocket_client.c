@@ -1,3 +1,8 @@
+/*
+	ESP8266 websocket client
+	version: 0.1
+	GIT: https://github.com/mkuch95/esp8266_websockets
+*/
 
 #include "websocket_client.h"
 

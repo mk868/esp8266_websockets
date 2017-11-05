@@ -1,3 +1,8 @@
+/*
+	GIT: https://github.com/mkuch95
+*/
+
+
 #pragma once
 #include <osapi.h>
 

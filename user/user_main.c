@@ -1,3 +1,8 @@
+/*
+	ESP8266 websocket client
+	version: 0.1
+	GIT: https://github.com/mkuch95/esp8266_websockets
+*/
 
 #include "ets_sys.h"
 #include "osapi.h"
@@ -5,11 +10,6 @@
 #include "driver/uart.h"
 #include <user_interface.h>
 #include <espconn.h>
-
-#include "Base64.h"
-#include "global.h"
-#include "MD5.h"
-#include "sha1.h"
 
 #include "websocket_client.h"
 
@@ -71,9 +71,9 @@ static struct WebSocketClient wsClient;
 
 void ICACHE_FLASH_ATTR dns_server_init() {
 	ip_addr_t dns;
-	IP4_ADDR(&dns, 8, 8, 8, 8);
+	SET_DNS1(&dns);
 	espconn_dns_setserver(0, &dns);
-	IP4_ADDR(&dns, 8, 8, 4, 4);
+	SET_DNS2(&dns);
 	espconn_dns_setserver(1, &dns);
 }
 
@@ -109,6 +109,12 @@ static int ws_i = 0;
 
 static void ICACHE_FLASH_ATTR timer_cb(void *arg)
 {
+	//when connected to the wifi network:
+	// - connect to webscoket server
+	// - send "first message"
+	// - send random data 10 times
+	// - disconnect websocket
+
 	if (wifi_station_get_connect_status() != 5) {//no internet connection
 		return;
 	}
@@ -148,7 +154,6 @@ void ICACHE_FLASH_ATTR init_done() {
 	char* ssid = WIFI_SSID;
 	char* password = WIFI_PASSWORD;
 
-	//todo enterprise wifi...
 	struct station_config stationConfig;
 	os_bzero(&stationConfig, sizeof(struct station_config));
 
@@ -181,7 +186,7 @@ void ICACHE_FLASH_ATTR user_init(void)
 
 
 	os_timer_disarm(&timer1);
-	os_timer_setfn(&timer1, (os_timer_func_t *)timer_cb, (void *)0);
+	os_timer_setfn(&timer1, (os_timer_func_t *)timer_cb, NULL);
 	os_timer_arm(&timer1, 3000, true);
 
 	dns_server_init();
